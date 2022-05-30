@@ -2,6 +2,7 @@
 
 This is my Work Day Scheduler Project 
 
-<img src="./Assets/Scheduler_Screenshot.png" alt="Getting started">
+<img src="./images/SchedulerScreenshot.png" alt="Getting started">
+
 
 
