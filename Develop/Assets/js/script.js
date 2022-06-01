@@ -42,12 +42,13 @@ $('#today-date').text(new Date());
 
 
   $(".btn").on("click", function() {
-     tasks.push({
-         text: $(this)
-         .find("input")
-         .text()
-         .trim()
-     })
-     console.log(tasks);
+    var inputText = $(".input").val();
+    //  tasks.push({
+    //      text: $(this)
+    //      .find("input")
+    //      .text()
+    //      .trim()
+    //  })
+     console.log(inputText);
       saveTasks();
   });
