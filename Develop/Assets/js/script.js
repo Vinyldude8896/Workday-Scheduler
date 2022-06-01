@@ -36,19 +36,15 @@ $('#today-date').text(new Date());
     // on input blur save text value
     $(".input").on("blur", function(){
         var text = $(this).val();
-         console.log(text);
+        //  console.log(text);
 
         });
 
 
   $(".btn").on("click", function() {
-    var inputText = $(".input").val();
-    //  tasks.push({
-    //      text: $(this)
-    //      .find("input")
-    //      .text()
-    //      .trim()
-    //  })
-     console.log(inputText);
-      saveTasks();
+    var buttonID = $(this).attr("id")
+     console.log(buttonID);
+
+    var InputTextBox = $(".input", buttonID).val();
+     console.log(InputTextBox);
   });
