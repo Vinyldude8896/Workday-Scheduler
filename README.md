@@ -2,7 +2,7 @@
 
 This is my Work Day Scheduler Project 
 
-<img src=".Develop/Assets/images/SchedulerScreenshot.png" alt="Getting started">
+<img src="./images/SchedulerScreenshot.png" alt="Getting started">
 
 This is a daily workday planner.
 
