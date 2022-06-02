@@ -13,14 +13,14 @@ $('#today-date').text(new Date());
 
 
     var loadTasks = function() {
-        localStorage.setItem("tasks", JSON.stringify(tasks));
+        tasks = JSON.parse(localStorage.getItem("tasks"));
     };
 
 
   
-    $(function() {
-        $("#sortable").sortable();
-    });
+    // $(function() {
+    //     $("#sortable").sortable();
+    // });
 
 
     //save Tasks function
@@ -67,13 +67,13 @@ $('#today-date').text(new Date());
 
             console.log("The attribute ID is " + ListId);
 
-            // var index = $(this)
-            // .closest(".list-group-item")
-            // .index();
+            var index = $(this).parent()
+            .closest("li")
+            .index();
 
             // console.log("This is at index " + index);
 
-            tasks[ListId].text = textInput;
+            tasks[ListId][index].text = textInput;
             saveTasks();
 
             //recreate li element
