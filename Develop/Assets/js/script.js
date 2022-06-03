@@ -17,9 +17,11 @@ var textinputTemp ="";
 $('#today-date').text(new Date());
 
 
-    // var loadTasks = function() {
-    //     tasks = JSON.parse(localStorage.getItem("tasks"));
-    // };
+    var loadTasks = function() {
+         var tasksSaved = JSON.parse(localStorage.getItem("toDo"));
+         console.log("The Saved Task is " + tasksSaved);
+        $("#10AM").text(tasksSaved);
+    };
 
 
   
@@ -28,13 +30,10 @@ $('#today-date').text(new Date());
     // });
 
 
-    //save Tasks function
-    // var saveTasks = function() {
-    //     localStorage.setItem("tasks", JSON.stringify(tasks));
-    // };
-
-
-
+    // save Tasks function
+    var saveTasks = function() {
+        localStorage.setItem("tasks", JSON.stringify(tasks.toDo));
+    };
 
         // task text was clicked
         $(".list-group").on("click", "li", function() {
@@ -51,21 +50,55 @@ $('#today-date').text(new Date());
         // // auto focus new element
         textInput.trigger("focus")
 
-        console.log("The input text is " + text);
-
         });
 
         // when user clicks outside the li area
         $(".list-group").on("blur", "textarea", function(){
             //get current value of textarea
-            tasks.toDo = $(this)
+            var userInputText = $(this)
             .val()
             .trim();
 
-            console.log("The new text is " + tasks.toDo)
+            var timeSpotInput = $(this)
+            .closest(".list-group-item")
+            .attr("id")
+            // .replace("list-", "");
 
+            var Position = $(this)
+            .closest(".list-group-item")
+            .position();
+
+            //recreate p element
+            var taskLi = $("<li>")
+            .addClass("list-group-item")
+            .addClass("col-lg-9")
+            .addClass("bg-light")
+            .text(userInputText);
+
+            //replace textarea with new content
+
+            $(this).replaceWith(taskLi);
+        
+
+
+            console.log("the position of this is " + Position);
+
+            console.log("The id of the input text is " + timeSpotInput);
+
+            console.log("The new text is " + userInputText)
+
+            tasks.toDo = userInputText;
 
             localStorage.setItem("toDo", JSON.stringify(tasks.toDo));
+
+
+            // // save in tasks array
+            // tasks.push({
+            //     time: "",
+            //     toDo: userInputText
+            // });
+        
+            // saveTasks();
 
             // // get the parent ul's id atrribute
             // var ListIdTime = $(this)
@@ -104,4 +137,4 @@ $('#today-date').text(new Date());
 
 
     // load tasks for the first time
-//   loadTasks();
+  loadTasks();
