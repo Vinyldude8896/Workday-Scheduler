@@ -14,13 +14,17 @@ var textinputTemp ="";
 //     format: 'DD/mm/dd'
 // });
 
-$('#today-date').text(new Date());
+$('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
 
 
     var loadTasks = function() {
+         var timesaved = JSON.parse(localStorage.getItem("time"))
          var tasksSaved = JSON.parse(localStorage.getItem("toDo"));
          console.log("The Saved Task is " + tasksSaved);
-        $("#10AM").text(tasksSaved);
+
+        var targetLi =( "#" + timesaved +  "Li");
+        console.log("the target li is " + targetLi);
+        $(targetLi).text(tasksSaved);
     };
 
 
@@ -32,7 +36,8 @@ $('#today-date').text(new Date());
 
     // save Tasks function
     var saveTasks = function() {
-        localStorage.setItem("tasks", JSON.stringify(tasks.toDo));
+        localStorage.setItem("time", JSON.stringify(tasks.time));
+        localStorage.setItem("toDo", JSON.stringify(tasks.toDo));
     };
 
         // task text was clicked
@@ -42,7 +47,7 @@ $('#today-date').text(new Date());
         .text()
         .trim();
 
-        //replace p with a new textarea
+        //replace li with a new textarea
 
         var textInput = $("<textarea>").addClass("form-control").val(text);
         $(this).replaceWith(textInput);
@@ -52,7 +57,7 @@ $('#today-date').text(new Date());
 
         });
 
-        // when user clicks outside the li area
+        // when user clicks outside the li area a new Li is replaced with current text
         $(".list-group").on("blur", "textarea", function(){
             //get current value of textarea
             var userInputText = $(this)
@@ -78,60 +83,85 @@ $('#today-date').text(new Date());
             //replace textarea with new content
 
             $(this).replaceWith(taskLi);
-        
 
+            // console.log("the position of this is " + Position);
 
-            console.log("the position of this is " + Position);
+            // console.log("The id of the input text is " + timeSpotInput);
 
-            console.log("The id of the input text is " + timeSpotInput);
+            // console.log("The new text is " + userInputText)
 
-            console.log("The new text is " + userInputText)
-
-            tasks.toDo = userInputText;
-
-            localStorage.setItem("toDo", JSON.stringify(tasks.toDo));
-
-
-            // // save in tasks array
-            // tasks.push({
-            //     time: "",
-            //     toDo: userInputText
-            // });
-        
-            // saveTasks();
-
-            // // get the parent ul's id atrribute
-            // var ListIdTime = $(this)
-            // .closest(".list-group-item")
-            // .attr("id")
-
-            // console.log("The attribute Time ID is " + ListId);
-
-            // localStorage.setItem("ListIdTime", JSON.stringify(tasks.time));
-
-            // // var index = $(this).parent()
-            // // .closest("li")
-            // .index();
-
-            // console.log("This is at index " + index);
-
-            // tasks[ListId][index].text = textInput;
-            // saveTasks();
-
-            //recreate li element
-
-            // var taskLi =$("<li>")
-            //     .addClass("list-group-item")
-            //     .val(textInput);
-
-            // // replace textarea with li element
-            // $(this).replaceWith(taskLi);
+            
 
         });
 
+
+        // save tasks when button clicked
+
+        $(".btn").on("click", function(tasksDataObj){
+
+            var button_time =$(this)
+            .attr("id")
+
+            var text_input = $(this)
+            .parent()
+            .find("li")
+            .text()
+            .trim();
+
+            // var tasksDataObj = {
+            //     toDo: text_input,
+            //     time: button_time,
+            // }
+
+            console.log("The button was clicked next to " + button_time);
+            console.log("the text in that time is " + text_input);
+     
+            // tasks.toDo = text_input;
+            // tasks.time = button_time;
+
+            tasks.toDo = text_input;
+            tasks.time = button_time;
+
+            // tasks.push(tasksDataObj);
+
+            saveTasks();
+
+        });
+        
+        //audit tasks
+
+        var auditTask = function(taskEl) {
+
+            $(this)
+            .children
+
+            // console.log("This list group item text is " + $("li").text().trim());
+            // // get time from li element
+            // if ($("li").text().trim() != "") {
+            //     console.log("text is not null");
+            //     $("li").addClass("bg-info");
+                
+            }
+            // var time = $("list-group-item").find("h2").text().trim();
+            // console.log("This is the time of task" + time);
+
+            // // convert to moment object 
+            // var time = moment(time, "L").set("hour", 17);
+
+            // if (moment().isAfter(time)) {
+            //     $(taskEl).addClass("bg-danger");
+            // }
+            // else if (Math.abs(moment().diff(time, "hours")) <=2) {
+            //     $(taskEl).addClass("bg-warning")
+            // }
+        // }
         
 
-        
+        setInterval(function() {
+            $(".list-group-item").each(function(index, el){
+                auditTask(el);
+            });
+        }, (1000*5));
 
 
 
