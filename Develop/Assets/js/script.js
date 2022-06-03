@@ -1,6 +1,11 @@
 
 // variable for tasks
-var tasks = {};
+var tasks = [
+    {
+        time: "",
+        toDo: ""
+    }
+];
 
 var textinputTemp ="";
 
@@ -12,9 +17,9 @@ var textinputTemp ="";
 $('#today-date').text(new Date());
 
 
-    var loadTasks = function() {
-        tasks = JSON.parse(localStorage.getItem("tasks"));
-    };
+    // var loadTasks = function() {
+    //     tasks = JSON.parse(localStorage.getItem("tasks"));
+    // };
 
 
   
@@ -24,9 +29,9 @@ $('#today-date').text(new Date());
 
 
     //save Tasks function
-    var saveTasks = function() {
-        localStorage.setItem("tasks", JSON.stringify(tasks));
-    };
+    // var saveTasks = function() {
+    //     localStorage.setItem("tasks", JSON.stringify(tasks));
+    // };
 
 
 
@@ -53,37 +58,41 @@ $('#today-date').text(new Date());
         // when user clicks outside the li area
         $(".list-group").on("blur", "textarea", function(){
             //get current value of textarea
-            var textInput = $(this)
+            tasks.toDo = $(this)
             .val()
             .trim();
 
-            console.log("The new text is " + textInput)
+            console.log("The new text is " + tasks.toDo)
 
-            // get the parent ul's id atrribute
-            var ListId = $(this)
-            .closest(".list-group")
-            .attr("id")
-            .replace("list-", "");
 
-            console.log("The attribute ID is " + ListId);
+            localStorage.setItem("toDo", JSON.stringify(tasks.toDo));
 
-            var index = $(this).parent()
-            .closest("li")
-            .index();
+            // // get the parent ul's id atrribute
+            // var ListIdTime = $(this)
+            // .closest(".list-group-item")
+            // .attr("id")
+
+            // console.log("The attribute Time ID is " + ListId);
+
+            // localStorage.setItem("ListIdTime", JSON.stringify(tasks.time));
+
+            // // var index = $(this).parent()
+            // // .closest("li")
+            // .index();
 
             // console.log("This is at index " + index);
 
-            tasks[ListId][index].text = textInput;
-            saveTasks();
+            // tasks[ListId][index].text = textInput;
+            // saveTasks();
 
             //recreate li element
 
-            var taskLi =$("<li>")
-                .addClass("list-group-item")
-                .val(textInput);
+            // var taskLi =$("<li>")
+            //     .addClass("list-group-item")
+            //     .val(textInput);
 
-            // replace textarea with li element
-            $(this).replaceWith(taskLi);
+            // // replace textarea with li element
+            // $(this).replaceWith(taskLi);
 
         });
 
@@ -95,4 +104,4 @@ $('#today-date').text(new Date());
 
 
     // load tasks for the first time
-  loadTasks();
+//   loadTasks();
