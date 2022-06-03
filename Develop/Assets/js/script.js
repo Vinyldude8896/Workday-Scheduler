@@ -1,10 +1,10 @@
 
 // variable for tasks
 var tasks = [
-    {
-        time: "",
-        toDo: ""
-    }
+    // {
+    //     time: "",
+    //     toDo: ""
+    // }
 ];
 
 var textinputTemp ="";
@@ -18,13 +18,32 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
 
 
     var loadTasks = function() {
-         var timesaved = JSON.parse(localStorage.getItem("time"))
-         var tasksSaved = JSON.parse(localStorage.getItem("toDo"));
-         console.log("The Saved Task is " + tasksSaved);
+       
+        var storedTasks = JSON.parse(localStorage.getItem("tasks"));
+        // var timesaved = JSON.parse(localStorage.getItem("tasks.time"))
+        // var tasksSaved = JSON.parse(localStorage.getItem("tasks.toDo"));
 
-        var targetLi =( "#" + timesaved +  "Li");
-        console.log("the target li is " + targetLi);
-        $(targetLi).text(tasksSaved);
+        // console.log("The Saved Task is " + tasksSaved);
+        // console.log("the Savesd Time is " + timesaved);
+
+        // for (i=0; i <= storedTasks.length; i++){
+        // //  var timesaved = tasks.time;
+        // //  var tasksSaved = tasks.toDo;
+        //  console.log("the saved time is" + tasks.time);
+        //  console.log("the saved task is " + tasks.toDo);
+        // var targetLi =( "#" + timesaved +  "Li");
+        // console.log("the target li is " + targetLi);
+        // $(targetLi).text(tasksSaved);
+        // }
+        
+        // loop over object properties
+        $.each(storedTasks, function(list, arr) {
+            console.log(list, arr);
+            // then loop over sub array
+            // list.forEach(function(task){
+            //     console.log(task.time, task.toDo);
+            // });
+        });
     };
 
 
@@ -36,8 +55,9 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
 
     // save Tasks function
     var saveTasks = function() {
-        localStorage.setItem("time", JSON.stringify(tasks.time));
-        localStorage.setItem("toDo", JSON.stringify(tasks.toDo));
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+         // localStorage.setItem("time", JSON.stringify(tasks.time));
+        // localStorage.setItem("toDo", JSON.stringify(tasks.toDo));
     };
 
         // task text was clicked
@@ -97,7 +117,7 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
 
         // save tasks when button clicked
 
-        $(".btn").on("click", function(tasksDataObj){
+        $(".btn").on("click", function(){
 
             var button_time =$(this)
             .attr("id")
@@ -108,10 +128,10 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
             .text()
             .trim();
 
-            // var tasksDataObj = {
-            //     toDo: text_input,
-            //     time: button_time,
-            // }
+            var tasksDataObj = {
+                toDo: text_input,
+                time: button_time,
+            }
 
             console.log("The button was clicked next to " + button_time);
             console.log("the text in that time is " + text_input);
@@ -119,10 +139,10 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
             // tasks.toDo = text_input;
             // tasks.time = button_time;
 
-            tasks.toDo = text_input;
-            tasks.time = button_time;
+            // tasks.toDo = text_input;
+            // tasks.time = button_time;
 
-            // tasks.push(tasksDataObj);
+            tasks.push(tasksDataObj);
 
             saveTasks();
 
@@ -130,10 +150,21 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
         
         //audit tasks
 
-        var auditTask = function(taskEl) {
+        var auditTask = function() {
 
-            $(this)
-            .children
+            var counterAM = 10;
+            var counterPM = 1;
+
+            for (counterAM; counterAM >12; counter++ ) {
+                
+                var targetLi =( "#" + counterAM +  "Li");
+                console.log("TargetLI text is" + targetLi).text();
+                if ((targetLi).text === "") {
+                    console.log("TargetLI text is" + targetLi).text();
+                    (targetLi).addClass("bg-secondary");
+                }
+                
+            }
 
             // console.log("This list group item text is " + $("li").text().trim());
             // // get time from li element
