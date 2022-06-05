@@ -1,57 +1,59 @@
 
 // variable for tasks
-var tasks = [
-    // {
-    //     time: "",
-    //     toDo: ""
-    // }
-];
+var tasks = [];
 
 var textinputTemp ="";
 
-//variable for datepicker
-// $('.datepicker').datepicker({
-//     format: 'DD/mm/dd'
-// });
 
+// get today's date and format it ad Day, Month, numeric day
 $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
 
 
+    // loading tasks from storage
     var loadTasks = function() {
        
-        var storedTasks = JSON.parse(localStorage.getItem("tasks"));
-        // var timesaved = JSON.parse(localStorage.getItem("tasks.time"))
-        // var tasksSaved = JSON.parse(localStorage.getItem("tasks.toDo"));
+        storedTasks = JSON.parse(localStorage.getItem("tasks"));
 
-        // console.log("The Saved Task is " + tasksSaved);
-        // console.log("the Savesd Time is " + timesaved);
 
-        // for (i=0; i <= storedTasks.length; i++){
-        // //  var timesaved = tasks.time;
-        // //  var tasksSaved = tasks.toDo;
-        //  console.log("the saved time is" + tasks.time);
-        //  console.log("the saved task is " + tasks.toDo);
-        // var targetLi =( "#" + timesaved +  "Li");
-        // console.log("the target li is " + targetLi);
-        // $(targetLi).text(tasksSaved);
-        // }
-        
-        // loop over object properties
+        // declare variables for tem storing
+
+        var tasksToDo = "";
+        var TaskTime = "";
+        var TimeLiElementset = "";
+
+        // Loop over object properties
         $.each(storedTasks, function(list, arr) {
             console.log(list, arr);
-            // then loop over sub array
-            // list.forEach(function(task){
-            //     console.log(task.time, task.toDo);
-            // });
-        });
-    };
+            
+            //loop over each item in array
+             $.each(arr, function(key, value,) {
+                 var keyofArray = key;
+                 var valueOfKey = value;
+                 console.log("key is" + keyofArray);
+                 
+                // if  key of array is toDo set to variable Tasks to do
+                 if (keyofArray === "toDo") {
+                    tasksToDo = valueOfKey;
+                 }
+
+                 // if key of array is time set variable to tasktime
+                 if (keyofArray === "time"){
+                    TaskTime = valueOfKey;
+                 }
+
+                });
+                 
+                //set variable to equal the id of the list element we are targetting
+                 TimeLiElementset = ("#" + TaskTime + "Li");
+               
+                // set task saved to the correct time slot in workday
+                $(TimeLiElementset).text(tasksToDo); 
+            
+            });
+    }
 
 
-  
-    // $(function() {
-    //     $("#sortable").sortable();
-    // });
-
+           
 
     // save Tasks function
     var saveTasks = function() {
@@ -135,12 +137,9 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
 
             console.log("The button was clicked next to " + button_time);
             console.log("the text in that time is " + text_input);
+            // console.log("this is the data hour " + text_input_hour);
      
-            // tasks.toDo = text_input;
-            // tasks.time = button_time;
-
-            // tasks.toDo = text_input;
-            // tasks.time = button_time;
+    
 
             tasks.push(tasksDataObj);
 
