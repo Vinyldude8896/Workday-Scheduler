@@ -58,8 +58,6 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
     // save Tasks function
     var saveTasks = function() {
         localStorage.setItem("tasks", JSON.stringify(tasks));
-         // localStorage.setItem("time", JSON.stringify(tasks.time));
-        // localStorage.setItem("toDo", JSON.stringify(tasks.toDo));
     };
 
         // task text was clicked
@@ -86,16 +84,8 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
             .val()
             .trim();
 
-            var timeSpotInput = $(this)
-            .closest(".list-group-item")
-            .attr("id")
-            // .replace("list-", "");
 
-            var Position = $(this)
-            .closest(".list-group-item")
-            .position();
-
-            //recreate p element
+            //recreate >li> element
             var taskLi = $("<li>")
             .addClass("list-group-item")
             .addClass("col-lg-9")
@@ -106,14 +96,6 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
 
             $(this).replaceWith(taskLi);
 
-            // console.log("the position of this is " + Position);
-
-            // console.log("The id of the input text is " + timeSpotInput);
-
-            // console.log("The new text is " + userInputText)
-
-            
-
         });
 
 
@@ -121,28 +103,28 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
 
         $(".btn").on("click", function(){
 
+
+            // get the ID of the button clicked
             var button_time =$(this)
             .attr("id")
 
+            //find the text that was input in the <li> element
             var text_input = $(this)
             .parent()
             .find("li")
             .text()
             .trim();
 
+            // declaring object with Time and task
             var tasksDataObj = {
                 toDo: text_input,
                 time: button_time,
             }
 
-            console.log("The button was clicked next to " + button_time);
-            console.log("the text in that time is " + text_input);
-            // console.log("this is the data hour " + text_input_hour);
-     
-    
-
+            // pushing objectinfo  into tasks
             tasks.push(tasksDataObj);
 
+            //calling savetasks
             saveTasks();
 
         });
@@ -153,39 +135,7 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
 
             var counterAM = 10;
             var counterPM = 1;
-
-            for (counterAM; counterAM >12; counter++ ) {
-                
-                var targetLi =( "#" + counterAM +  "Li");
-                console.log("TargetLI text is" + targetLi).text();
-                if ((targetLi).text === "") {
-                    console.log("TargetLI text is" + targetLi).text();
-                    (targetLi).addClass("bg-secondary");
-                }
-                
-            }
-
-            // console.log("This list group item text is " + $("li").text().trim());
-            // // get time from li element
-            // if ($("li").text().trim() != "") {
-            //     console.log("text is not null");
-            //     $("li").addClass("bg-info");
-                
-            }
-            // var time = $("list-group-item").find("h2").text().trim();
-            // console.log("This is the time of task" + time);
-
-            // // convert to moment object 
-            // var time = moment(time, "L").set("hour", 17);
-
-            // if (moment().isAfter(time)) {
-            //     $(taskEl).addClass("bg-danger");
-            // }
-            // else if (Math.abs(moment().diff(time, "hours")) <=2) {
-            //     $(taskEl).addClass("bg-warning")
-            // }
-        // }
-        
+        }
 
         setInterval(function() {
             $(".list-group-item").each(function(index, el){
