@@ -157,7 +157,7 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
                 console.log("The 9AM Text is null");
                 $('#9AMLi').removeClass("bg-light");
                 $('#9AMLi').addClass("bg-secondary");
-              } else if((hours - listDataHour9AM) >0){
+              } else if($("#9AMLi").text() != "" && moment().isAfter(listDataHour9AM)){
                 console.log("time is past for 9AM");
                 $('#9AMLi').removeClass("bg-light");
                 $('#9AMLi').addClass("bg-danger");
@@ -175,7 +175,7 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
                 console.log("The 10AM Text is null");
                 $('#10AMLi').removeClass("bg-light");
                 $('#10AMLi').addClass("bg-secondary");
-              } else if((hours - listDataHour10AM) >0){
+              } else if((hours - listDataHour10AM) <=0){
                 console.log("time is past for 9AM");
                 $('#10AMLi').removeClass("bg-light");
                 $('#10AMLi').addClass("bg-danger");
@@ -193,7 +193,7 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
                 console.log("The 11AM Text is null");
                 $('#11AMLi').removeClass("bg-light");
                 $('#11AMLi').addClass("bg-secondary");
-              } else if((hours - listDataHour11AM) >0){
+              } else if((hours - listDataHour11AM) <=0){
                 console.log("time is past for 11AM");
                 $('#11AMLi').removeClass("bg-light");
                 $('#11AMLi').addClass("bg-danger");
@@ -211,105 +211,107 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
                 console.log("The 12PM Text is null");
                 $('#12PMLi').removeClass("bg-light");
                 $('#12PMLi').addClass("bg-secondary");
-              }else  if((hours - listDataHour12PM) >0){
+              } if((listDataHour12PM -hours ) <=0){
                 console.log("time is past for 12PM");
                 $('#12PMLi').removeClass("bg-light");
                 $('#12PMLi').addClass("bg-danger");
-             }  else if ((hours - listDataHour12PM) <=2 ) {
+             }  else if ((listDataHour12PM - hours) <=2 ) {
                   console.log("time is close for 12PM");
                   $('#12PMLi').removeClass("bg-light");
                   $('#12PMLi').addClass("bg-warning");
-            }   else if((hours - listDataHour12PM) >3 ){
+            }  else if((listDataHour12PM - hours) >2 ){
                 $('#12PMLi').removeClass("bg-light");
                 $('#12PMLi').addClass("bg-success");
             } 
 
               // audit time for 1PM List element
-              if ( $("#1PMLi").text()  === "" ) {
+           
+            if ( $("#1PMLi").text()  === "" ) {
                 console.log("The 1PM Text is null");
                 $('#1PMLi').removeClass("bg-light");
                 $('#1PMLi').addClass("bg-secondary");
-              } else if((hours - listDataHour1PM) >=0){
+              } if((listDataHour1PM -hours ) <=0){
                 console.log("time is past for 1PM");
                 $('#1PMLi').removeClass("bg-light");
                 $('#1PMLi').addClass("bg-danger");
-             }  else if ((hours - listDataHour1PM) <2 ) {
+             }  else if ((listDataHour1PM - hours) <=2 ) {
                   console.log("time is close for 3PM");
                   $('#1PMLi').removeClass("bg-light");
                   $('#1PMLi').addClass("bg-warning");
-            }  else if((hours - listDataHour1PM) >3 ){
+            }  else if((listDataHour1PM - hours) >2 ){
                 $('#1PMLi').removeClass("bg-light");
                 $('#1PMLi').addClass("bg-success");
             } 
 
-                  // audit time for 2PM List element
-                  if ( $("#2PMLi").text()  === "" ) {
-                    console.log("The 2PM Text is null");
-                    $('#2PMLi').removeClass("bg-light");
-                    $('#2PMLi').addClass("bg-secondary");
-                  } else if((hours - listDataHour2PM) >0){
-                    console.log("time is past for 2PM");
-                    $('#2PMLi').removeClass("bg-light");
-                    $('#2PMLi').addClass("bg-danger");
-                 }  else if ((hours - listDataHour2PM) <=2 ) {
-                      console.log("time is close for 2PM");
-                      $('#2PMLi').removeClass("bg-light");
-                      $('#2PMLi').addClass("bg-warning");
-                }  else if((hours - listDataHour2PM) >3 ){
-                    $('#2PMLi').removeClass("bg-light");
-                    $('#2PMLi').addClass("bg-success");
-                } 
+                 // audit time for 2PM List element
+              if ( $("#2PMLi").text()  === "" ) {
+                console.log("The 2PM Text is null");
+                $('#2PMLi').removeClass("bg-light");
+                $('#2PMLi').addClass("bg-secondary");
+              } if((listDataHour2PM -hours ) <=0){
+                console.log("time is past for 2PM");
+                $('#2PMLi').removeClass("bg-light");
+                $('#2PMLi').addClass("bg-danger");
+             }  if ((listDataHour2PM - hours) <2 ) {
+                  console.log("time is close for 2PM");
+                  $('#2PMLi').removeClass("bg-light");
+                  $('#2PMLi').addClass("bg-warning");
+            }   if((listDataHour2PM - hours) >2 ){
+                $('#2PMLi').removeClass("bg-light");
+                $('#2PMLi').addClass("bg-success");
+            } 
 
             // audit time for 3PM List element
               if ( $("#3PMLi").text()  === "" ) {
                 console.log("The 3PM Text is null");
                 $('#3PMLi').removeClass("bg-light");
                 $('#3PMLi').addClass("bg-secondary");
-              } else if((hours - listDataHour3PM) >=0){
+              } if((listDataHour3PM -hours ) <=0){
                 console.log("time is past for 3PM");
                 $('#3PMLi').removeClass("bg-light");
                 $('#3PMLi').addClass("bg-danger");
-             }  else if ((hours - listDataHour3PM) <=2 ) {
+             }  else if ((listDataHour3PM - hours) <=2 ) {
                   console.log("time is close for 3PM");
                   $('#3PMLi').removeClass("bg-light");
                   $('#3PMLi').addClass("bg-warning");
-            }  else if((hours - listDataHour3PM) >3 ){
+            }  else if((listDataHour3PM - hours) >2 ){
                 $('#3PMLi').removeClass("bg-light");
                 $('#3PMLi').addClass("bg-success");
             } 
 
                   // audit time for 4PM List element
-                  if ( $("#4PMLi").text()  === "" ) {
-                    console.log("The 4PM Text is null");
-                    $('#4PMLi').removeClass("bg-light");
-                    $('#4PMLi').addClass("bg-secondary");
-                  } else if((hours - listDataHour4PM) >0){
-                    console.log("time is past for 4PM");
-                    $('#4PMLi').removeClass("bg-light");
-                    $('#4PMLi').addClass("bg-danger");
-                 }  else if ((hours - listDataHour4PM) <=2 ) {
-                      console.log("time is close for 4PM");
-                      $('#4PMLi').removeClass("bg-light");
-                      $('#4PMLi').addClass("bg-warning");
-                }  else if((hours - listDataHour4PM) >3 ){
-                    $('#4PMLi').removeClass("bg-light");
-                    $('#4PMLi').addClass("bg-success");
-                } 
+              if ( $("#4PMLi").text()  === "" ) {
+                console.log("The 4PM Text is null");
+                $('#4PMLi').removeClass("bg-light");
+                $('#4PMLi').addClass("bg-secondary");
+              } if((listDataHour4PM -hours ) <=0){
+                console.log("time is past for 4PM");
+                $('#4PMLi').removeClass("bg-light");
+                $('#4PMLi').addClass("bg-danger");
+             }  else if ((listDataHour4PM - hours) <=2 ) {
+                  console.log("time is close for 4PM");
+                  $('#4PMLi').removeClass("bg-light");
+                  $('#4PMLi').addClass("bg-warning");
+            }  else if((listDataHour4PM - hours) >2 ){
+                $('#4PMLi').removeClass("bg-light");
+                $('#4PMLi').addClass("bg-success");
+            } 
 
                 // audit time for 5PM List element
+              
               if ( $("#5PMLi").text()  === "" ) {
                 console.log("The 5PM Text is null");
                 $('#5PMLi').removeClass("bg-light");
                 $('#5PMLi').addClass("bg-secondary");
-              } else if((hours - listDataHour5PM) >0){
-                console.log("time is past for 5PM");
+              } if((listDataHour5PM -hours ) <=0){
+                console.log("time is past for 3PM");
                 $('#5PMLi').removeClass("bg-light");
                 $('#5PMLi').addClass("bg-danger");
-             }  else if ((hours - listDataHour5PM) <=2 ) {
-                  console.log("time is close for 3PM");
+             }  else if ((listDataHour5PM - hours) <=2 ) {
+                  console.log("time is close for 5PM");
                   $('#5PMLi').removeClass("bg-light");
                   $('#5PMLi').addClass("bg-warning");
-            }  else if((hours - listDataHour5PM) >3 ){
+            }  else if((listDataHour5PM - hours) >2 ){
                 $('#5PMLi').removeClass("bg-light");
                 $('#5PMLi').addClass("bg-success");
             } 
