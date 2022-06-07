@@ -124,14 +124,14 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
               $('#9AMLi').removeClass("bg-light");
               $('#9AMLi').addClass("bg-danger");
            }  
-            else if (Math.abs(moment(hours).diff(listDataHour9AM, "hours")) <= 1){
-                console.log("time is close for 9AM");
-                $('#9AMLi').removeClass("bg-light");
-                $('#9AMLi').addClass("bg-warning");
-          }  else if (moment(hours).isSameOrBefore(listDataHour9AM)){
-              $('#9AMLi').removeClass("bg-light");
-              $('#9AMLi').addClass("bg-success");
-          };
+           if ((listDataHour9AM - hours) <= 1){
+            console.log("time is close for 9AM");
+            $('#9AMLi').removeClass("bg-light");
+            $('#9AMLi').addClass("bg-warning");
+      }  if ((listDataHour9AM - hours) > 2){
+          $('#9AMLi').removeClass("bg-light");
+          $('#9AMLi').addClass("bg-success");
+      };
 
             // audit time for 10AM List element
             if ( $("#10AMLi").text()  === "" ) {
@@ -144,14 +144,14 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
               $('#10AMLi').removeClass("bg-light");
               $('#10AMLi').addClass("bg-danger");
            }  
-            else if (Math.abs(moment(hours).diff(listDataHour10AM, "hours")) <= 1){
-                console.log("time is close for 10AM");
-                $('#10AMLi').removeClass("bg-light");
-                $('#10AMLi').addClass("bg-warning");
-          }  else if (moment(hours).isSameOrBefore(listDataHour10AM)){
-              $('#10AMLi').removeClass("bg-light");
-              $('#10AMLi').addClass("bg-success");
-          };
+           if ((listDataHour10AM - hours) <= 1){
+            console.log("time is close for 10AM");
+            $('#10AMLi').removeClass("bg-light");
+            $('#10AMLi').addClass("bg-warning");
+      }  if ((listDataHour5PM - hours) > 2){
+          $('#10AMLi').removeClass("bg-light");
+          $('#10AMLi').addClass("bg-success");
+      };
 
               //audit time for 10AM List element
               if ( $("#11AMLi").text()  === "" ) {
@@ -159,19 +159,19 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
                 $('#11AMLi').removeClass("bg-light");
                 $('#11AMLi').addClass("bg-secondary");
               } 
-              else if (moment(hours).isAfter(listDataHour11AM)) {
+              else if (moment().isAfter(listDataHour11AM)) {
                 console.log("time is past for 11AM");
                 $('#11AMLi').removeClass("bg-light");
                 $('#11AMLi').addClass("bg-danger");
              }  
-              else if (Math.abs(moment(hours).diff(listDataHour11AM, "hours")) <= 1){
-                  console.log("time is close for 11AM");
-                  $('#11AMLi').removeClass("bg-light");
-                  $('#11AMLi').addClass("bg-warning");
-            }  else if (moment(hours).isSameOrBefore(listDataHour11AM)){
-                $('#11AMLi').removeClass("bg-light");
-                $('#11AMLi').addClass("bg-success");
-            };
+             else if ((listDataHour11AM - hours) <= 1){
+              console.log("time is close for 11AM");
+              $('#11AMLi').removeClass("bg-light");
+              $('#11AMLi').addClass("bg-warning");
+        }  else if ((listDataHour11AM - hours) > 2){
+            $('#11AMLi').removeClass("bg-light");
+            $('#11AMLi').addClass("bg-success");
+        };
                 
               //audit time for 12PM List element
               if ( $("#12PMLi").text()  === "" ) {
@@ -184,14 +184,14 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
                 $('#12PMLi').removeClass("bg-light");
                 $('#12PMLi').addClass("bg-danger");
              }  
-              else if (Math.abs(moment(hours).diff(listDataHour12PM, "hours")) <= 1){
-                  console.log("time is close for 12PM");
-                  $('#12PMLi').removeClass("bg-light");
-                  $('#12PMLi').addClass("bg-warning");
-            }  else if (moment(hours).isSameOrBefore(listDataHour12PM)){
-                $('#12PMLi').removeClass("bg-light");
-                $('#12PMLi').addClass("bg-success");
-            };
+              else if ((listDataHour12PM - hours) <= 1){
+              console.log("time is close for 12PM");
+              $('#12PMLi').removeClass("bg-light");
+              $('#12PMLi').addClass("bg-warning");
+        }  else if ((listDataHour12PM - hours) > 2){
+            $('#12PMLi').removeClass("bg-light");
+            $('#12PMLi').addClass("bg-success");
+        };
 
               // audit time for 1PM List element
            
@@ -205,14 +205,14 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
                 $('#1PMLi').removeClass("bg-light");
                 $('#1PMLi').addClass("bg-danger");
              }  
-              else if (Math.abs(moment(hours).diff(listDataHour1PM, "hours")) <= 1){
-                  console.log("time is close for 1PM");
-                  $('#1PMLi').removeClass("bg-light");
-                  $('#1PMLi').addClass("bg-warning");
-            }  else if (moment(hours).isSameOrBefore(listDataHour1PM)){
-                $('#1PMLi').removeClass("bg-light");
-                $('#1PMLi').addClass("bg-success");
-            };
+             else if ((listDataHour1PM - hours) <= 1){
+              console.log("time is close for 1PM");
+              $('#1PMLi').removeClass("bg-light");
+              $('#1PMLi').addClass("bg-warning");
+        }  else if ((listDataHour1PM - hours) > 2){
+            $('#1PMLi').removeClass("bg-light");
+            $('#1PMLi').addClass("bg-success");
+        };
 
                  // audit time for 2PM List element
                  if ( $("#2PMLi").text()  === "" ) {
@@ -225,14 +225,14 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
                   $('#2PMLi').removeClass("bg-light");
                   $('#2PMLi').addClass("bg-danger");
                }  
-                else if (Math.abs(moment(hours).diff(listDataHour2PM, "hours")) <= 1){
-                    console.log("time is close for 2PM");
-                    $('#2PMLi').removeClass("bg-light");
-                    $('#2PMLi').addClass("bg-warning");
-              }  else if (moment(hours).isSameOrBefore(listDataHour2PM)){
-                  $('#2PMLi').removeClass("bg-light");
-                  $('#2PMLi').addClass("bg-success");
-              };
+               else if ((listDataHour2PM - hours) <= 1){
+                console.log("time is close for 2PM");
+                $('#2PMLi').removeClass("bg-light");
+                $('#2PMLi').addClass("bg-warning");
+          }  else if ((listDataHour5PM - hours) > 2){
+              $('#2PMLi').removeClass("bg-light");
+              $('#2PMLi').addClass("bg-success");
+          };
 
             // audit time for 3PM List element
         
@@ -246,14 +246,14 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
                       $('#3PMLi').removeClass("bg-light");
                       $('#3PMLi').addClass("bg-danger");
                    }  
-                    else if (Math.abs(moment(hours).diff(listDataHour3PM, "hours")) <= 1){
-                        console.log("time is close for 3PM");
-                        $('#3PMLi').removeClass("bg-light");
-                        $('#3PMLi').addClass("bg-warning");
-                  }  else if (moment(hours).isSameOrBefore(listDataHour3PM)){
-                      $('#3PMLi').removeClass("bg-light");
-                      $('#3PMLi').addClass("bg-success");
-                  };
+                   else if ((listDataHour3PM - hours) <= 1){
+                    console.log("time is close for 3PM");
+                    $('#3PMLi').removeClass("bg-light");
+                    $('#3PMLi').addClass("bg-warning");
+              }  else if ((listDataHour3PM - hours) > 2){
+                  $('#3PMLi').removeClass("bg-light");
+                  $('#3PMLi').addClass("bg-success");
+              };
 
                   // audit time for 4PM List element
                   if ( $("#4PMLi").text()  === "" ) {
@@ -266,14 +266,14 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
                     $('#4PMLi').removeClass("bg-light");
                     $('#4PMLi').addClass("bg-danger");
                  }  
-                  else if (Math.abs(moment(hours).diff(listDataHour4PM, "hours")) <= 1){
-                      console.log("time is close for 4PM");
-                      $('#4PMLi').removeClass("bg-light");
-                      $('#4PMLi').addClass("bg-warning");
-                }  else if (moment(hours).isSameOrBefore(listDataHour4PM)){
-                    $('#4PMLi').removeClass("bg-light");
-                    $('#4PMLi').addClass("bg-success");
-                };
+                else if ((listDataHour4PM - hours) <= 1){
+                  console.log("time is close for 4PM");
+                  $('#4PMLi').removeClass("bg-light");
+                  $('#4PMLi').addClass("bg-warning");
+            }  else if ((listDataHour4PM - hours) > 2){
+                $('#4PMLi').removeClass("bg-light");
+                $('#4PMLi').addClass("bg-success");
+            };
               
 
                 // audit time for 5PM List element
@@ -288,11 +288,11 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
                   $('#5PMLi').removeClass("bg-light");
                   $('#5PMLi').addClass("bg-danger");
                }  
-                else if (Math.abs(moment(hours).diff(listDataHour5PM, "hours")) <= 2){
+                else if ((listDataHour5PM - hours) <= 1){
                     console.log("time is close for 5PM");
                     $('#5PMLi').removeClass("bg-light");
                     $('#5PMLi').addClass("bg-warning");
-              }  else if (moment(hours).isSameOrBefore(listDataHour5PM)){
+              }  else if ((listDataHour5PM - hours) > 2){
                   $('#5PMLi').removeClass("bg-light");
                   $('#5PMLi').addClass("bg-success");
               };
