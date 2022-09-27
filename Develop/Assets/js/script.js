@@ -75,6 +75,7 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
             //replace textarea with new content
 
             $(this).replaceWith(taskLi);
+           
 
         });
 
@@ -94,25 +95,28 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
           var listDataHour3PM = parseInt($('#3PMLi').attr('data-hour'));
           var listDataHour4PM = parseInt($('#4PMLi').attr('data-hour'));
           var listDataHour5PM = parseInt($('#5PMLi').attr('data-hour'));
+          var timesofListItems = ['9','10','11','12','1','2','3','4','5'];
           console.log("The time in Hours is " + hours); 
         //   console.log(" The data hour is " + listDataHour);
           
         //remove any old classes from element
+        for (i=0; i= timesofListItems.length; i++) {
+          $(timesofListItems[i]+"AMLi").removeClass("bg-secondary bg-danger bg-warning bg-succes");
+        }
+        // $("9AMLi").removeClass("bg-secondary bg-danger bg-warning bg-succes");
+        // $("10AMLi").removeClass("bg-secondary bg-danger bg-warning bg-succes");
+        // $("11AMLi").removeClass("bg-secondary bg-danger bg-warning bg-succes");
+        // $("12PMLi").removeClass("bg-secondary bg-danger bg-warning bg-succes");
+        // $("1PMLi").removeClass("bg-secondary bg-danger bg-warning bg-succes");
+        // $("2PMLi").removeClass("bg-secondary bg-danger bg-warning bg-succes");
+        // $("3PMLi").removeClass("bg-secondary bg-danger bg-warning bg-succes");
+        // $("4PMLi").removeClass("bg-secondary bg-danger bg-warning bg-succes");
+        // $("5PMLi").removeClass("bg-secondary bg-danger bg-warning bg-succes");
 
-        $("9AMLi").removeClass("bg-secondary bg-danger bg-warning bg-succes");
-        $("10AMLi").removeClass("bg-secondary bg-danger bg-warning bg-succes");
-        $("11AMLi").removeClass("bg-secondary bg-danger bg-warning bg-succes");
-        $("12PMLi").removeClass("bg-secondary bg-danger bg-warning bg-succes");
-        $("1PMLi").removeClass("bg-secondary bg-danger bg-warning bg-succes");
-        $("2PMLi").removeClass("bg-secondary bg-danger bg-warning bg-succes");
-        $("3PMLi").removeClass("bg-secondary bg-danger bg-warning bg-succes");
-        $("4PMLi").removeClass("bg-secondary bg-danger bg-warning bg-succes");
-        $("5PMLi").removeClass("bg-secondary bg-danger bg-warning bg-succes");
-
-         // var hoursWorkDay = ["9","10","11", "12", "13", "14", "15", "16", "17"]
+         var hoursWorkDay = ["9","10","11", "12", "13", "14", "15", "16", "17"]
 
             console.log("The text in 9AM is " + $('#9AMLi').text());
-
+          
              // audit time for 9AM List element
              if ( $("#9AMLi").text()  != "" ) {
               console.log("The 9AM Text is null");
@@ -301,6 +305,7 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
         // save Tasks function
     var saveTasks = function() {
       localStorage.setItem("tasks", JSON.stringify(tasks));
+          
   };
 
       // task text was clicked
@@ -315,8 +320,6 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
       var textInput = $("<textarea>").addClass("form-control").val(text);
       $(this).replaceWith(textInput);
 
-        // audit tasks
-      auditTask();
 
       // // auto focus new element
       textInput.trigger("focus")
@@ -350,15 +353,16 @@ $('#today-date').text($.datepicker.formatDate('DD, MM dd', new Date()));
           // pushing objectinfo  into tasks
           tasks.push(tasksDataObj);
 
-          // Audit Tasks
+            // audit tasks
+            auditTask();
           //calling savetasks
           saveTasks();
 
       });
 
         setInterval(function() {
-            $(".list-group-item").each(function(index, el){
-                auditTask(el);
+            $(".list-group-item").each(function(){
+                auditTask();
             });
         }, (1000*5));
 
